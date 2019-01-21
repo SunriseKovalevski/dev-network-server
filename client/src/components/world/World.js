@@ -2,8 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCurrentProfile } from "../../actions/profileActions";
+import Map from "../map/Map";
+import Player from "../player";
 
-class Dashboard extends Component {
+import { tiles } from "../../data/maps/1";
+import store from "../../store";
+
+class World extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
   }
@@ -11,30 +16,35 @@ class Dashboard extends Component {
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
-    let dashboardContent;
+    let worldContent;
 
     if (profile === null || loading) {
-      dashboardContent = <h4>Loading...</h4>;
+      worldContent = <h4>Loading...</h4>;
     } else {
-      dashboardContent = <h1>Hello</h1>;
+      store.dispatch({
+        type: "ADD_TILES",
+        payload: {
+          tiles
+        }
+      });
+      worldContent = <Map />;
     }
-
     return (
-      <div className="dashboard">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <h1 className="display-4">Dashboard</h1>
-              {dashboardContent}
-            </div>
-          </div>
-        </div>
+      <div
+        style={{
+          position: "relative",
+          width: "800px",
+          height: "400px",
+          margin: "20px auto"
+        }}
+      >
+        {worldContent}
       </div>
     );
   }
 }
 
-Dashboard.propTypes = {
+World.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
@@ -48,4 +58,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getCurrentProfile }
-)(Dashboard);
+)(World);

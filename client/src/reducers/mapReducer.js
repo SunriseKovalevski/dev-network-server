@@ -1,12 +1,16 @@
 const initialState = {
-  positionHorizont: 0,
-  positionVertical: 0,
-  loading: false
-};
+  tiles: [],
+}
 
-export default function(state = initialState, action) {
-  switch (action.type) {
+const mapReducer = (state=initialState, action) => {
+  switch(action.type) {
+    case 'ADD_TILES':
+      return {
+        ...action.payload
+      }
     default:
-      return state;
+      return state
   }
 }
+
+export default mapReducer
