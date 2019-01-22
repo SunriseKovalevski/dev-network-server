@@ -50,6 +50,10 @@ class Login extends Component {
   render() {
     const { errors } = this.state;
 
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/world");
+    }
+
     return (
       <div className="login">
         <div className="container">
