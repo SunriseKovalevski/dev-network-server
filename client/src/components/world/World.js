@@ -39,6 +39,7 @@ class World extends Component {
         }}
       >
         {worldContent}
+        <Player />
       </div>
     );
   }

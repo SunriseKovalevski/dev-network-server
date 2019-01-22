@@ -58,8 +58,8 @@ function Map(props) {
         border: "4px solid white"
       }}
     >
-      {props.tiles.map(row => (
-        <MapRow tiles={row} />
+      {props.tiles.map((row, i) => (
+        <MapRow tiles={row} key={i} />
       ))}
     </div>
   );

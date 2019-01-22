@@ -16,8 +16,11 @@ function Player(props) {
         height: "40px"
       }}
     />
+
   );
 }
+
+
 
 function mapStateToProps(state) {
   return {

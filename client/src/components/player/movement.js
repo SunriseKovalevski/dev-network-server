@@ -92,9 +92,24 @@ export default function handleMovement(player) {
     }
   }
 
-  window.addEventListener("keydown", e => {
-    handleKeyDown(e);
-  });
+  const Player = player;
+  class WrapperComponent extends React.Component {
 
-  return player;
+    handleKeyDown = (e) => handleKeyDown(e);
+
+    componentDidMount() {
+      window.addEventListener("keydown", this.handleKeyDown);
+    }
+
+    componentWillUnmount() {
+      window.removeEventListener("keydown", this.handleKeyDown);
+    }
+
+    render() {
+      return <Player {...this.props}/> 
+    }
+  }
+
+  return WrapperComponent;
+
 }
