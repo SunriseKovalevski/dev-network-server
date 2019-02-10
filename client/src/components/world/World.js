@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCurrentProfile } from "../../actions/profileActions";
 import Map from "../map/Map";
-import Player from "../player";
+import Player from "../player/index";
+import Fight from "../../components/fight/Fight";
 
 import { tiles } from "../../data/maps/1";
 import store from "../../store";
@@ -27,7 +28,9 @@ class World extends Component {
           tiles
         }
       });
-      worldContent = <Map />;
+      if (store.getState().player.currentTile !== 2) {
+        worldContent = <Map />;
+      }
     }
     return (
       <div
