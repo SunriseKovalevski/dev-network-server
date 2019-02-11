@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCurrentProfile } from "../../actions/profileActions";
+import Question from "../../data/questions/Question";
 
 class Fight extends Component {
   componentDidMount() {
@@ -32,6 +33,7 @@ class Fight extends Component {
                 </div>
                 <div className="col-md-3">
                   <h4>Area for battle questions!</h4>
+                  <Question />
                   <button
                     type="button"
                     className="btn btn-info btn-lg"
@@ -40,66 +42,6 @@ class Fight extends Component {
                   >
                     Defence
                   </button>
-                  <div className="modal fade" id="myModal" role="dialog">
-                    <div className="modal-dialog">
-                      <div className="modal-content">
-                        <div className="modal-header">
-                          <h4 className="modal-title">
-                            Последний месяц в году?
-                          </h4>
-                          <button
-                            className="close"
-                            type="button"
-                            data-dismiss="modal"
-                          >
-                            &times;
-                          </button>
-                        </div>
-                        <div className="modal-body">
-                          <div className="container">
-                            <div className="col-md-12">
-                              <button
-                                className="btn btn-default btn-info"
-                                type="button"
-                                data-dismiss="modal"
-                              >
-                                Январь
-                              </button>
-                            </div>
-                            <div className="col-md-12">
-                              <button
-                                className="btn btn-default btn-info"
-                                type="button"
-                                data-dismiss="modal"
-                              >
-                                Воскресенье
-                              </button>
-                            </div>
-                            <div className="col-md-12">
-                              <button
-                                className="btn btn-default btn-info"
-                                type="button"
-                                data-dismiss="modal"
-                              >
-                                Декабрь
-                              </button>
-                            </div>
-                            <div className="col-md-12">
-                              <button
-                                className="btn btn-default btn-info"
-                                type="button"
-                                data-dismiss="modal"
-                              >
-                                Март
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <h5>Последнй месяц в году?</h5>
-                  Январь Воскресенье Декабрь Март
                 </div>
                 <div className="col-md-3">
                   <h4>Area for enemy picture</h4>
