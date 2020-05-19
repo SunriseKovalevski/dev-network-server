@@ -17,3 +17,7 @@
 .chest {
   background-image: url("../../img/chest.png");
 }
+
+.enemy {
+  background-image: url("../../img/player.png");
+}

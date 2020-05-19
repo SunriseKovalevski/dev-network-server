@@ -1,6 +1,8 @@
 import React from "react";
 import store from "../../store";
 import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from "../../constants";
+import Fight from "../../components/fight/Fight";
+import World from "../world/World";
 
 export default function handleMovement(player) {
   function getNewPosition(oldPos, direction) {
@@ -52,15 +54,22 @@ export default function handleMovement(player) {
 
   function dispatchMove(direction, newPos) {
     const walkIndex = getWalkIndex();
-    store.dispatch({
-      type: "MOVE_PLAYER",
-      payload: {
-        position: newPos,
-        direction,
-        walkIndex,
-        spriteLocation: getSpriteLocation(direction, walkIndex)
-      }
-    });
+    const tiles = store.getState().map.tiles;
+    const y = newPos[1] / SPRITE_SIZE;
+    const x = newPos[0] / SPRITE_SIZE;
+    const nextTile = tiles[y][x];
+    if (store.getState().player.currentTile !== 2) {
+      store.dispatch({
+        type: "MOVE_PLAYER",
+        payload: {
+          position: newPos,
+          direction,
+          walkIndex,
+          spriteLocation: getSpriteLocation(direction, walkIndex),
+          currentTile: nextTile
+        }
+      });
+    }
   }
 
   function attemptMove(direction) {
@@ -94,8 +103,7 @@ export default function handleMovement(player) {
 
   const Player = player;
   class WrapperComponent extends React.Component {
-
-    handleKeyDown = (e) => handleKeyDown(e);
+    handleKeyDown = e => handleKeyDown(e);
 
     componentDidMount() {
       window.addEventListener("keydown", this.handleKeyDown);
@@ -106,10 +114,13 @@ export default function handleMovement(player) {
     }
 
     render() {
-      return <Player {...this.props}/> 
+      if (store.getState().player.currentTile == 2) {
+        console.log("DVADVA");
+        return <Fight />;
+      }
+      return <Player {...this.props} />;
     }
   }
 
   return WrapperComponent;
-
 }

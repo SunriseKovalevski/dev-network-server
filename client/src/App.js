@@ -16,6 +16,7 @@ import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import World from "./components/world/World";
 import Map from "./components/map/Map";
+import Fight from "./components/fight/Fight";
 
 import "./App.css";
 
@@ -52,6 +53,7 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/world" component={World} />
+              <Route exact path="/fight" component={Fight} />
               <Route exact path="/map" component={Map} />
             </div>
             <Footer />
